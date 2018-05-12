@@ -1,0 +1,36 @@
+{% extends 'contentbase.html' %}
+{% include 'base.html' %}
+
+{% load static %}
+{% load socialaccount %}
+{% load i18n %}
+
+{% block content %}
+
+  {% get_providers as socialaccount_providers %}
+
+  {% if socialaccount_providers %}
+    <div class="row">
+      <div class="mt-5">
+        <h1 class="medium">{% trans "Sign in with GitHub, or with your Dawlab account." %}</h1>                                        
+      </div>
+    </div>
+    <div class="ml-2">
+      {% include "socialaccount/snippets/provider_list.html" with process="login" %}    
+    </div>
+  {% endif %}
+
+  <form class="login" id="login_form" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="primaryAction m-1" type="submit">{% trans "Dawlab Sign In" %}</button>
+    <a class="button secondaryAction small" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>  
+  </form>
+
+  <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="primaryAction m-1" type="submit">{% trans "Create Account" %} &raquo;</button>
+  </form>
+
+{% endblock %}

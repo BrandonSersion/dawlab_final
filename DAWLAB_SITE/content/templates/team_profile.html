@@ -1,0 +1,45 @@
+{% extends 'contentbase.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="mx-auto mt-5">
+            <h1>{{employee.first_name}} {{employee.last_name}}</h1>        
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="mx-auto">
+            <h5>{{employee.job_title}}</h5>        
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="offset-md-3 col-md-6 small mt-4">
+            <h5>About me</h5>        
+            <p>{{employee.bio|linebreaks}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="offset-md-3 col-md-6 mt-2 small">
+            <h5>Job Description</h5>        
+            <p>{{employee.job_description}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="offset-md-3 col-md-6 mt-2 small">
+            <h5>Skills</h5>
+            <p>{{employee.skills|linebreaks}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="mx-auto">
+            <a href="{% url 'team' %}" class="btn btn-link mx-auto">Back</a>
+        </div>
+    </div>
+
+{% endblock %}
